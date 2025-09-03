@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dhanushya Suresh | Portfolio</title>
+  <meta name="description" content="Personal portfolio and project showcase." />
+  <style>
+    :root{
+      --bg:#0f172a;          /* slate-900 */
+      --panel:#111827;       /* gray-900 */
+      --muted:#94a3b8;       /* slate-400 */
+      --text:#e5e7eb;        /* gray-200 */
+      --brand:#60a5fa;       /* blue-400 */
+      --brand-2:#22d3ee;     /* cyan-400 */
+      --accent:#10b981;      /* emerald-500 */
+      --warn:#f59e0b;        /* amber-500 */
+      --danger:#ef4444;      /* red-500 */
+      --card:#0b1225;
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(96,165,250,.15), transparent 60%),
+                  radial-gradient(1000px 500px at 110% 10%, rgba(34,211,238,.12), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{width:min(1100px, 92%); margin-inline:auto}
+    /* NAV */
+    nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(1.2) blur(10px);
+      background:rgba(8,12,24,.65); border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav-bar{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.3px}
+    .logo{
+      width:34px; height:34px; display:grid; place-items:center; border-radius:10px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      box-shadow:0 6px 14px rgba(96,165,250,.35);
+      font-weight:800; color:#0b1225;
+    }
+    .nav-links{display:flex; gap:22px; align-items:center}
+    .nav-links a{
+      padding:8px 12px; border-radius:10px; color:var(--muted); font-weight:600; font-size:.95rem;
+    }
+    .nav-links a:hover{color:#fff; background:rgba(255,255,255,.06)}
+    .hamb{display:none; background:none; border:0; color:var(--text); font-size:1.4rem}
+    @media (max-width:880px){
+      .nav-links{display:none; position:absolute; left:0; right:0; top:60px; padding:12px 4%;
+        background:#0a1020; border-bottom:1px solid rgba(255,255,255,.08); flex-direction:column; gap:12px}
+      .nav-links.show{display:flex}
+      .hamb{display:block}
+    }
+    /* HERO */
+    .hero{
+      padding:80px 0 60px;
+      display:grid; grid-template-columns: 1.2fr .8fr; gap:38px; align-items:center;
+    }
+    .hero h1{font-size:clamp(2.2rem, 4.8vw, 3.4rem); line-height:1.08; margin:.2rem 0 .6rem}
+    .hero p{color:var(--muted); font-size:1.1rem}
+    .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:22px}
+    .btn{
+      padding:12px 18px; border-radius:12px; font-weight:700; border:1px solid transparent; cursor:pointer;
+      transition:.2s transform ease, .2s background ease, .2s border-color ease;
+    }
+    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#0b1225}
+    .btn-outline{border-color:rgba(255,255,255,.2); color:#fff; background:transparent}
+    .btn:hover{transform:translateY(-2px)}
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow);
+    }
+    .hero-badges{display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 6px}
+    .badge{font-size:.78rem; padding:6px 10px; border-radius:999px; color:#0b1225; font-weight:800}
+    .b1{background:#bbf7d0} .b2{background:#fde68a} .b3{background:#bfdbfe}
+    /* SECTION GENERIC */
+    section{padding:70px 0}
+    .sec-head{display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:26px}
+    .sec-eyebrow{color:var(--brand-2); font-weight:800; letter-spacing:.12em; text-transform:uppercase; font-size:.8rem}
+    .sec-title{font-size:clamp(1.4rem,3.5vw,2rem); margin:.2rem 0}
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} .grid-3{grid-template-columns:1fr} .grid-2{grid-template-columns:1fr}}
+    .card{
+      background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius);
+      padding:18px; box-shadow:var(--shadow)
+    }
+    .card h3{margin:.2rem 0 .2rem}
+    .muted{color:var(--muted)}
+    .chip{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.06); font-size:.8rem; color:var(--muted)}
+    /* PORTFOLIO */
+    .work{overflow:hidden}
+    .work img{width:100%; height:180px; object-fit:cover; border-radius:12px; border:1px solid rgba(255,255,255,.08)}
+    /* TESTIMONIALS */
+    .quote{font-style:italic; color:#cbd5e1}
+    /* PRICING */
+    .price-tag{font-size:2rem; font-weight:900}
+    /* FAQ */
+    details{background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:12px 16px}
+    details+details{margin-top:12px}
+    summary{cursor:pointer; font-weight:700}
+    /* CONTACT */
+    form{display:grid; gap:12px}
+    input, textarea{
+      padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12);
+      background:#0a1020; color:var(--text); outline:none
+    }
+    input::placeholder, textarea::placeholder{color:#7c8aa6}
+    /* FOOTER */
+    footer{padding:26px 0 60px; color:var(--muted); border-top:1px solid rgba(255,255,255,.08)}
+    .foot{display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between}
+    .social{display:flex; gap:14px}
+    .pill{padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.06)}
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container nav-bar">
+      <div class="brand">
+        <div class="logo">DS</div>
+        <span>Dhanushya Suresh</span>
+      </div>
+      <button class="hamb" aria-label="Toggle Menu" onclick="toggleMenu()">☰</button>
+      <div id="menu" class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="chip">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="container hero">
+    <div>
+      <div class="hero-badges">
+        <span class="badge b1">Frontend</span>
+        <span class="badge b2">Cloud</span>
+        <span class="badge b3">Beginner Friendly</span>
+      </div>
+      <h1>Build, Host & Showcase Projects — Fast.</h1>
+      <p>I’m <strong>Dhanushya</strong>. This site is a full demo you can reuse for college projects or personal portfolio. Deployed on <strong>GitHub Pages</strong> with pure HTML/CSS/JS.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#portfolio">See My Work</a>
+        <a class="btn btn-outline" href="https://github.com/Dhanushyasuresh" target="_blank" rel="noreferrer">GitHub Profile</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>Quick Facts</h3>
+      <p class="muted">Edit this panel to add your own summary.</p>
+      <ul>
+        <li>🎯 Focus: Web + Cloud</li>
+        <li>🧩 Skills: HTML, CSS, JS</li>
+        <li>🚀 Hosting: GitHub Pages</li>
+      </ul>
+      <p class="chip">Open Source • Clean Design • Responsive</p>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">About</div>
+          <h2 class="sec-title">Who am I?</h2>
+        </div>
+        <span class="chip">Location: India</span>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Student • Developer • Learner</h3>
+          <p class="muted">I enjoy building simple, fast websites and deploying them to the cloud. This template is a single-file site—easy to modify and perfect for GitHub Pages.</p>
+          <p class="muted">Replace text/images to make it yours. Keep scrolling for projects, testimonials, and a contact form.</p>
+        </div>
+        <div class="card">
+          <h3>Highlights</h3>
+          <ul>
+            <li>✅ Responsive layout (mobile-first)</li>
+            <li>✅ Sticky navbar & smooth scroll</li>
+            <li>✅ No external frameworks (works offline)</li>
+            <li>✅ Clean components & modern look</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">Services</div>
+          <h2 class="sec-title">What I can do</h2>
+        </div>
+        <a class="chip" href="#contact">Hire me →</a>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Static Websites</h3>
+          <p class="muted">Fast, lightweight, SEO-friendly websites using vanilla HTML/CSS/JS.</p>
+        </div>
+        <div class="card">
+          <h3>Cloud Hosting</h3>
+          <p class="muted">Deploy to GitHub Pages / Netlify with CI-free simplicity.</p>
+        </div>
+        <div class="card">
+          <h3>UI Polish</h3>
+          <p class="muted">Modern gradients, readable typography, and subtle shadows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">Portfolio</div>
+          <h2 class="sec-title">Recent Projects</h2>
+        </div>
+        <span class="chip">6 showcased</span>
+      </div>
+      <div class="grid-3">
+        <!-- Repeatable project card -->
+        <article class="card work">
+          <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop" alt="Project preview">
+          <h3>Cloud Hosted Site</h3>
+          <p class="muted">Static website deployed via GitHub Pages with custom domain support.</p>
+          <p><a class="btn btn-outline" href="#" onclick="alert('Demo link placeholder');return false;">View Demo</a></p>
+        </article>
+
+        <article class="card work">
+          <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1200&auto=format&fit=crop" alt="Project preview">
+          <h3>Portfolio Theme</h3>
+          <p class="muted">Minimal, accessible template with great performance.</p>
+          <p><a class="btn btn-outline" href="#">Code</a></p>
+        </article>
+
+        <article class="card work">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Project preview">
+          <h3>JS Widgets</h3>
+          <p class="muted">Vanilla JS components: tabs, accordions, and modals.</p>
+          <p><a class="btn btn-outline" href="#">Docs</a></p>
+        </article>
+
+        <article class="card work">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop" alt="Project preview">
+          <h3>Landing Page</h3>
+          <p class="muted">High-conversion layout with clear CTAs and pricing.</p>
+          <p><a class="btn btn-outline" href="#">Preview</a></p>
+        </article>
+
+        <article class="card work">
+          <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1200&auto=format&fit=crop" alt="Project preview">
+          <h3>Docs Site</h3>
+          <p class="muted">Lightweight docs with search and dark theme.</p>
+          <p><a class="btn btn-outline" href="#">Read</a></p>
+        </article>
+
+        <article class="card work">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" alt="Project preview">
+          <h3>UI Experiments</h3>
+          <p class="muted">Micro-interactions and subtle animations.</p>
+          <p><a class="btn btn-outline" href="#">Try</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">Testimonials</div>
+          <h2 class="sec-title">What people say</h2>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <p class="quote">“Clean design and super fast hosting setup. Perfect for college demos.”</p>
+          <p class="muted">— Faculty Reviewer</p>
+        </div>
+        <div class="card">
+          <p class="quote">“Loved the responsiveness; looks great on mobile and desktop.”</p>
+          <p class="muted">— Classmate</p>
+        </div>
+        <div class="card">
+          <p class="quote">“Single file deployment is a life saver.”</p>
+          <p class="muted">— Friend</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING (optional, for portfolio can be services tiers) -->
+  <section id="pricing">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">Pricing</div>
+          <h2 class="sec-title">Simple plans</h2>
+        </div>
+        <span class="chip">Edit or remove</span>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Starter</h3>
+          <p class="price-tag">₹0</p>
+          <p class="muted">1 static page • GitHub Pages deploy</p>
+          <button class="btn btn-outline">Choose</button>
+        </div>
+        <div class="card" style="outline:2px solid rgba(96,165,250,.6)">
+          <h3>Pro</h3>
+          <p class="price-tag">₹999</p>
+          <p class="muted">Multi-section site • Custom styling</p>
+          <button class="btn btn-primary">Choose</button>
+        </div>
+        <div class="card">
+          <h3>Custom</h3>
+          <p class="price-tag">₹—</p>
+          <p class="muted">Tailored features • Priority support</p>
+          <button class="btn btn-outline">Contact</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">FAQ</div>
+          <h2 class="sec-title">Common questions</h2>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div>
+          <details open>
+            <summary>How do I customize this site?</summary>
+            <p class="muted">Edit text and links directly in this HTML file. Change colors in the <code>:root</code> variables at the top of the CSS.</p>
+          </details>
+          <details>
+            <summary>Can I add images?</summary>
+            <p class="muted">Yes. Replace the placeholder Unsplash URLs with your image links or local files committed to the repo.</p>
+          </details>
+        </div>
+        <div>
+          <details>
+            <summary>Will this work offline?</summary>
+            <p class="muted">Yes—no external libraries required. Everything is in this file.</p>
+          </details>
+          <details>
+            <summary>How do I add a new section?</summary>
+            <p class="muted">Copy a section block, change the <code>id</code>, update the nav link, and style as needed.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">Contact</div>
+          <h2 class="sec-title">Let’s talk</h2>
+        </div>
+        <span class="chip">Typically replies in 1 day</span>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <form onsubmit="alert('This is a static demo form. Connect a form service (e.g., Netlify Forms) to receive submissions.'); return false;">
+            <input required placeholder="Your name" />
+            <input type="email" required placeholder="Email address" />
+            <textarea rows="5" placeholder="Message"></textarea>
+            <button class="btn btn-primary" type="submit">Send Message</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3>Elsewhere</h3>
+          <p class="muted">Add your links below.</p>
+          <p><a class="chip" href="https://github.com/Dhanushyasuresh" target="_blank" rel="noreferrer">GitHub</a></p>
+          <p><a class="chip" href="#" target="_blank">LinkedIn</a></p>
+          <p><a class="chip" href="#" target="_blank">Twitter</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot">
+      <p>© <span id="year"></span> Dhanushya Suresh. All rights reserved.</p>
+      <div class="social">
+        <span class="pill">Made with HTML • CSS • JS</span>
+        <a class="pill" href="#home">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu(){ document.getElementById('menu').classList.toggle('show'); }
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
